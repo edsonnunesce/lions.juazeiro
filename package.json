@@ -1,0 +1,9 @@
+{
+  "name": "lions-juazeiro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site institucional do Lions Clube de Juazeiro do Norte - CE.",
+  "scripts": {
+    "vercel-build": "node -e \"const fs=require('fs');fs.mkdirSync('.vercel/output/static',{recursive:true});fs.copyFileSync('index.html','.vercel/output/static/index.html');fs.writeFileSync('.vercel/output/config.json',JSON.stringify({version:3}));\""
+  }
+}
