@@ -27,6 +27,7 @@ const layoutCss = `
 
   @media(max-width:960px){
     .siteHeader .utility{display:none!important}
+    .siteHeader .mainNav{display:none!important}
     .siteHeader .brandRow{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:12px!important}
     .siteHeader .brand{flex:1 1 auto!important;min-width:0!important}
     .siteHeader .brand>span:last-child{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
