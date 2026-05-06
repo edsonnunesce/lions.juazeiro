@@ -18,6 +18,10 @@ const globalEnhancements = `
     padding-bottom: 0 !important;
   }
 
+  .heroCard > p { display: none !important; }
+  .heroCard .stats { grid-template-columns: repeat(3, 1fr) !important; }
+  .heroCard .stats > div:nth-child(4) { display: none !important; }
+
   .searchOverlay {
     position: fixed;
     inset: 0;
@@ -131,6 +135,7 @@ const globalEnhancements = `
   }
 
   @media (max-width: 560px) {
+    .heroCard .stats { grid-template-columns: 1fr !important; }
     .searchForm { grid-template-columns: 1fr; }
     .searchForm button { width: 100% !important; }
   }
