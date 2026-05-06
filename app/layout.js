@@ -27,7 +27,7 @@ const independentMenuCss = `
     right: 22px;
     bottom: 22px;
     z-index: 2147482500;
-    display: none;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -42,6 +42,10 @@ const independentMenuCss = `
     letter-spacing: -.02em;
   }
 
+  body:not(.homePath) .instagramFloat {
+    display: none;
+  }
+
   .instagramFloat::before {
     content: '◎';
     display: inline-flex;
@@ -54,10 +58,6 @@ const independentMenuCss = `
     font-size: 23px;
     line-height: 1;
     font-weight: 900;
-  }
-
-  body.homePath .instagramFloat {
-    display: inline-flex;
   }
 
   @media (max-width: 960px) {
@@ -109,7 +109,7 @@ const independentMenuCss = `
 
     .instagramFloat {
       right: 16px;
-      bottom: 18px;
+      bottom: calc(92px + env(safe-area-inset-bottom));
       min-height: 50px;
       padding: 0 14px;
       font-size: .94rem;
