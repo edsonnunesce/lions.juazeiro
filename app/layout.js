@@ -28,11 +28,11 @@ const layoutCss = `
   @media(max-width:960px){
     .siteHeader .utility{display:none!important}
     .siteHeader .mainNav{display:none!important}
-    .siteHeader .brandRow{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:12px!important}
-    .siteHeader .brand{flex:1 1 auto!important;min-width:0!important}
+    .siteHeader .brandRow{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:flex-start!important;justify-content:space-between!important;gap:6px 12px!important}
+    .siteHeader .brand{flex:1 1 calc(100% - 62px)!important;min-width:0!important;max-width:calc(100% - 62px)!important}
     .siteHeader .brand>span:last-child{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
-    .siteHeader .headerActions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;width:min(92vw,680px)!important;margin:12px auto 0!important}
-    .siteHeader .headerActions .join,.siteHeader .headerActions .donate{display:flex!important;width:100%!important;max-width:none!important;min-height:54px!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:0 14px!important;border-radius:12px!important;line-height:1.05!important}
+    .siteHeader .headerActions{display:grid!important;grid-template-columns:88px 74px!important;gap:8px!important;width:auto!important;margin:-6px 52px 0 auto!important;align-self:flex-start!important;justify-content:end!important}
+    .siteHeader .headerActions .join,.siteHeader .headerActions .donate{display:flex!important;width:100%!important;max-width:none!important;min-height:32px!important;height:32px!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:0 8px!important;border-radius:9px!important;line-height:1!important;font-size:.72rem!important;font-weight:850!important;letter-spacing:-.02em!important}
     .globalMobileToggle{position:fixed;width:1px;height:1px;opacity:0;pointer-events:none}
     .globalMobileButton{display:inline-flex!important;align-items:center;justify-content:center;position:fixed;top:10px;right:4vw;width:44px;height:44px;z-index:2147483000;border-radius:14px;border:1px solid #cfd8e8;background:#fff;box-shadow:0 8px 22px rgba(0,25,80,.12);color:#111827;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;font-size:0}
     .globalMobileButton::before{content:'☰';font-size:28px;line-height:1;font-weight:900;color:#111827;transform:translateY(-1px)}
@@ -55,7 +55,8 @@ const layoutCss = `
   }
   @media(max-width:430px){
     .globalMobileGrid,.globalMobileActions{grid-template-columns:1fr}
-    .siteHeader .headerActions{grid-template-columns:1fr 1fr!important}
+    .siteHeader .headerActions{grid-template-columns:82px 68px!important;margin:-6px 52px 0 auto!important}
+    .siteHeader .headerActions .join,.siteHeader .headerActions .donate{min-height:30px!important;height:30px!important;font-size:.68rem!important;border-radius:8px!important;padding:0 7px!important}
     .globalMobileInstitutional{grid-template-columns:1fr;gap:2px}
     .globalMobileGrid a{min-height:50px;font-size:1rem}
     .globalMobileInstitutional a{min-height:38px;font-size:1rem}
