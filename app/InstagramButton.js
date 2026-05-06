@@ -3,6 +3,41 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 
+function InstagramIcon() {
+  return React.createElement(
+    'svg',
+    {
+      className: 'instagramIcon',
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      xmlns: 'http://www.w3.org/2000/svg',
+      'aria-hidden': 'true'
+    },
+    React.createElement('rect', {
+      x: '3',
+      y: '3',
+      width: '18',
+      height: '18',
+      rx: '5',
+      stroke: 'currentColor',
+      strokeWidth: '2'
+    }),
+    React.createElement('circle', {
+      cx: '12',
+      cy: '12',
+      r: '4',
+      stroke: 'currentColor',
+      strokeWidth: '2'
+    }),
+    React.createElement('circle', {
+      cx: '17.5',
+      cy: '6.5',
+      r: '1.2',
+      fill: 'currentColor'
+    })
+  );
+}
+
 export default function InstagramButton() {
   const pathname = usePathname();
   const isHome = pathname === '/' || pathname === '';
@@ -27,24 +62,22 @@ export default function InstagramButton() {
             border-radius: 999px;
             background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
             color: #fff;
-            font-weight: 950;
+            font-weight: 400;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             text-decoration: none;
             box-shadow: 0 18px 42px rgba(0,25,80,.22);
-            letter-spacing: -.02em;
+            letter-spacing: 0;
           }
 
-          .instagramFloatHome::before {
-            content: '◎';
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            border: 2px solid rgba(255,255,255,.9);
-            border-radius: 9px;
-            font-size: 23px;
-            line-height: 1;
-            font-weight: 900;
+          .instagramIcon {
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
+            color: #fff;
+          }
+
+          .instagramHandle {
+            font-weight: 400;
           }
 
           @media (max-width: 960px) {
@@ -56,11 +89,10 @@ export default function InstagramButton() {
               font-size: .94rem;
             }
 
-            .instagramFloatHome::before {
-              width: 25px;
-              height: 25px;
-              font-size: 20px;
-              border-radius: 8px;
+            .instagramIcon {
+              width: 22px;
+              height: 22px;
+              flex-basis: 22px;
             }
           }
         `
@@ -72,6 +104,9 @@ export default function InstagramButton() {
       target: '_blank',
       rel: 'noopener noreferrer',
       'aria-label': 'Instagram @lcjuazeiro'
-    }, '@lcjuazeiro')
+    },
+      React.createElement(InstagramIcon),
+      React.createElement('span', { className: 'instagramHandle' }, '@lcjuazeiro')
+    )
   );
 }
