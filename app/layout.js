@@ -13,6 +13,10 @@ const independentMenuCss = `
   }
 
   @media (max-width: 960px) {
+    .siteHeader .utility {
+      display: none !important;
+    }
+
     .globalMobileToggle {
       position: fixed;
       width: 1px;
@@ -132,36 +136,40 @@ const independentMenuCss = `
 
     .globalMobileInstitutional {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 16px;
       margin: 14px 0 0;
-      padding-top: 14px;
+      padding: 16px 0 2px;
       border-top: 1px solid #d9e2ef;
     }
 
     .globalMobileInstitutional a {
       display: flex;
       align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 11px 10px;
-      border-radius: 14px;
-      background: #fff;
+      justify-content: flex-start;
+      min-height: 42px;
+      padding: 6px 0;
+      border-radius: 0;
+      background: transparent;
       color: #172033;
-      font-size: clamp(.82rem, 3.3vw, .95rem);
+      font-size: clamp(.9rem, 3.6vw, 1rem);
       line-height: 1.05;
       font-weight: 950;
-      letter-spacing: .08em;
+      letter-spacing: .12em;
       text-transform: uppercase;
       text-decoration: none;
-      text-align: center;
+      text-align: left;
     }
 
+    .globalMobileInstitutional .actionDeskStyle,
     .globalMobileInstitutional .directorDeskStyle {
       color: #e44d2e;
       text-shadow: 0 0 14px rgba(228,77,46,.25);
     }
 
+    .globalMobileInstitutional .historyDeskStyle,
+    .globalMobileInstitutional .transparencyDeskStyle,
+    .globalMobileInstitutional .juazeiroDeskStyle,
     .globalMobileInstitutional .portalDeskStyle,
     .globalMobileInstitutional .contactDeskStyle {
       color: #172033;
@@ -204,6 +212,7 @@ const independentMenuCss = `
 
     .globalMobileInstitutional {
       grid-template-columns: 1fr;
+      gap: 2px;
     }
 
     .globalMobileGrid a {
@@ -212,11 +221,8 @@ const independentMenuCss = `
     }
 
     .globalMobileInstitutional a {
-      justify-content: flex-start;
-      min-height: 48px;
+      min-height: 38px;
       font-size: 1rem;
-      padding-left: 14px;
-      text-align: left;
     }
   }
 `;
@@ -230,15 +236,15 @@ function MobileMenu() {
       React.createElement('div', { className: 'globalMobileGrid' },
         React.createElement('a', { href: '/' }, 'Início'),
         React.createElement('a', { href: '/quem-somos' }, 'Quem somos'),
-        React.createElement('a', { href: '/historia' }, 'História'),
-        React.createElement('a', { href: '/juazeiro-do-norte' }, 'Juazeiro do Norte'),
         React.createElement('a', { href: '/campanhas' }, 'Campanhas'),
-        React.createElement('a', { href: '/diretoria' }, 'Diretoria'),
         React.createElement('a', { href: '/voluntariado' }, 'Voluntariado'),
-        React.createElement('a', { href: '/transparencia' }, 'Transparência'),
         React.createElement('a', { className: 'adminLink', href: '/admin' }, 'Área administrativa ↗')
       ),
       React.createElement('div', { className: 'globalMobileInstitutional' },
+        React.createElement('a', { className: 'actionDeskStyle', href: '/campanhas' }, 'Lions em ação'),
+        React.createElement('a', { className: 'historyDeskStyle', href: '/historia' }, 'História'),
+        React.createElement('a', { className: 'transparencyDeskStyle', href: '/transparencia' }, 'Transparência'),
+        React.createElement('a', { className: 'juazeiroDeskStyle', href: '/juazeiro-do-norte' }, 'Juazeiro'),
         React.createElement('a', { className: 'directorDeskStyle', href: '/diretoria' }, 'Diretoria'),
         React.createElement('a', { className: 'portalDeskStyle', href: '/admin' }, 'Portal interno'),
         React.createElement('a', { className: 'contactDeskStyle', href: '/voluntariado' }, 'Contato')
