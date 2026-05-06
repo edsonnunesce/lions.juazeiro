@@ -4,6 +4,13 @@
   "private": true,
   "description": "Site institucional do Lions Clube de Juazeiro do Norte - CE.",
   "scripts": {
-    "vercel-build": "node -e \"const fs=require('fs');fs.mkdirSync('.vercel/output/static',{recursive:true});fs.copyFileSync('index.html','.vercel/output/static/index.html');fs.writeFileSync('.vercel/output/config.json',JSON.stringify({version:3}));\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "15.3.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   }
 }
