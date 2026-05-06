@@ -8,7 +8,7 @@ export const metadata = {
 
 const layoutCss = `
   .mark {
-    background-image: url('/logo_lcjuazeiro.svg') !important;
+    background-image: url('/logo_lcjuazeiro.png') !important;
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
