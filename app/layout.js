@@ -130,6 +130,43 @@ const independentMenuCss = `
       border-color: #e7d7ef;
     }
 
+    .globalMobileInstitutional {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid #d9e2ef;
+    }
+
+    .globalMobileInstitutional a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 11px 10px;
+      border-radius: 14px;
+      background: #fff;
+      color: #172033;
+      font-size: clamp(.82rem, 3.3vw, .95rem);
+      line-height: 1.05;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .globalMobileInstitutional .directorDeskStyle {
+      color: #e44d2e;
+      text-shadow: 0 0 14px rgba(228,77,46,.25);
+    }
+
+    .globalMobileInstitutional .portalDeskStyle,
+    .globalMobileInstitutional .contactDeskStyle {
+      color: #172033;
+    }
+
     .globalMobileActions {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -165,9 +202,21 @@ const independentMenuCss = `
       grid-template-columns: 1fr;
     }
 
+    .globalMobileInstitutional {
+      grid-template-columns: 1fr;
+    }
+
     .globalMobileGrid a {
       min-height: 50px;
       font-size: 1rem;
+    }
+
+    .globalMobileInstitutional a {
+      justify-content: flex-start;
+      min-height: 48px;
+      font-size: 1rem;
+      padding-left: 14px;
+      text-align: left;
     }
   }
 `;
@@ -188,6 +237,11 @@ function MobileMenu() {
         React.createElement('a', { href: '/voluntariado' }, 'Voluntariado'),
         React.createElement('a', { href: '/transparencia' }, 'Transparência'),
         React.createElement('a', { className: 'adminLink', href: '/admin' }, 'Área administrativa ↗')
+      ),
+      React.createElement('div', { className: 'globalMobileInstitutional' },
+        React.createElement('a', { className: 'directorDeskStyle', href: '/diretoria' }, 'Diretoria'),
+        React.createElement('a', { className: 'portalDeskStyle', href: '/admin' }, 'Portal interno'),
+        React.createElement('a', { className: 'contactDeskStyle', href: '/voluntariado' }, 'Contato')
       ),
       React.createElement('div', { className: 'globalMobileActions' },
         React.createElement('a', { className: 'globalParticipar', href: '/voluntariado' }, 'Participar'),
