@@ -1,4 +1,5 @@
 import React from 'react';
+import InstagramButton from './InstagramButton';
 
 export const metadata = {
   title: 'Lions Clube Juazeiro do Norte',
@@ -20,44 +21,6 @@ const independentMenuCss = `
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-  }
-
-  .instagramFloat {
-    position: fixed;
-    right: 22px;
-    bottom: 22px;
-    z-index: 2147482500;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    min-height: 54px;
-    padding: 0 18px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-    color: #fff;
-    font-weight: 950;
-    text-decoration: none;
-    box-shadow: 0 18px 42px rgba(0,25,80,.22);
-    letter-spacing: -.02em;
-  }
-
-  body:not(.homePath) .instagramFloat {
-    display: none;
-  }
-
-  .instagramFloat::before {
-    content: '◎';
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border: 2px solid rgba(255,255,255,.9);
-    border-radius: 9px;
-    font-size: 23px;
-    line-height: 1;
-    font-weight: 900;
   }
 
   @media (max-width: 960px) {
@@ -105,21 +68,6 @@ const independentMenuCss = `
       padding: 0 14px !important;
       border-radius: 12px !important;
       line-height: 1.05 !important;
-    }
-
-    .instagramFloat {
-      right: 16px;
-      bottom: calc(92px + env(safe-area-inset-bottom));
-      min-height: 50px;
-      padding: 0 14px;
-      font-size: .94rem;
-    }
-
-    .instagramFloat::before {
-      width: 25px;
-      height: 25px;
-      font-size: 20px;
-      border-radius: 8px;
     }
 
     .globalMobileToggle {
@@ -336,17 +284,6 @@ const independentMenuCss = `
   }
 `;
 
-const instagramHomeScript = `
-(function(){
-  function setHomeClass(){
-    var path = window.location.pathname.replace(/\/$/, '') || '/';
-    document.body.classList.toggle('homePath', path === '/');
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setHomeClass);
-  else setHomeClass();
-})();
-`;
-
 function MobileMenu() {
   return React.createElement(React.Fragment, null,
     React.createElement('input', { id: 'global-mobile-menu', className: 'globalMobileToggle', type: 'checkbox', 'aria-label': 'Abrir menu principal' }),
@@ -377,16 +314,6 @@ function MobileMenu() {
   );
 }
 
-function InstagramFloat() {
-  return React.createElement('a', {
-    className: 'instagramFloat',
-    href: 'https://www.instagram.com/lcjuazeiro/',
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    'aria-label': 'Instagram @lcjuazeiro'
-  }, '@lcjuazeiro');
-}
-
 export default function RootLayout(props) {
   return React.createElement(
     'html',
@@ -397,8 +324,7 @@ export default function RootLayout(props) {
       props.children,
       React.createElement('style', { id: 'independent-mobile-menu-css', dangerouslySetInnerHTML: { __html: independentMenuCss } }),
       React.createElement(MobileMenu),
-      React.createElement(InstagramFloat),
-      React.createElement('script', { dangerouslySetInnerHTML: { __html: instagramHomeScript } })
+      React.createElement(InstagramButton)
     )
   );
 }
