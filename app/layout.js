@@ -5,38 +5,24 @@ export const metadata = {
   description: 'Site institucional do Lions Clube Juazeiro do Norte: campanhas, diretoria, voluntariado, transparência e painel administrativo.'
 };
 
-const mobileMenuFix = `
-  .headerActions a.join,
-  .headerActions a.donate,
-  .headerActions a {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    line-height: 1 !important;
-  }
-
+const finalMobileMenuCss = `
   .mobileFullMenu,
   .mobileMenuTitle,
-  .mobileMenuActions {
-    display: none;
-  }
+  .mobileMenuActions { display: none; }
 
   @media (max-width: 960px) {
-    body.mobile-menu-open { overflow: hidden; }
+    body.mobile-menu-open { overflow: hidden !important; }
 
     .siteHeader {
       position: sticky !important;
       top: 0 !important;
-      z-index: 9999 !important;
+      z-index: 99999 !important;
       background: #fff !important;
       border-bottom: 1px solid #d9e2ef !important;
       box-shadow: 0 8px 24px rgba(0,25,80,.08) !important;
     }
 
-    .utility {
-      display: none !important;
-    }
+    .utility { display: none !important; }
 
     .brandRow {
       display: flex !important;
@@ -44,9 +30,9 @@ const mobileMenuFix = `
       align-items: center !important;
       justify-content: space-between !important;
       gap: 12px !important;
-      padding: 10px 0 !important;
       width: min(1180px, 92vw) !important;
       margin: auto !important;
+      padding: 10px 0 !important;
     }
 
     .brand {
@@ -55,7 +41,7 @@ const mobileMenuFix = `
       display: flex !important;
       align-items: center !important;
       gap: 10px !important;
-      font-size: clamp(1rem, 4vw, 1.2rem) !important;
+      font-size: clamp(1rem, 4vw, 1.18rem) !important;
       line-height: 1.05 !important;
       letter-spacing: -.045em !important;
       color: #172033 !important;
@@ -68,9 +54,7 @@ const mobileMenuFix = `
       white-space: nowrap !important;
     }
 
-    .brand small {
-      display: none !important;
-    }
+    .brand small { display: none !important; }
 
     .mark {
       width: 42px !important;
@@ -99,9 +83,7 @@ const mobileMenuFix = `
 
     .headerActions a,
     .headerActions .join,
-    .headerActions .donate {
-      display: none !important;
-    }
+    .headerActions .donate { display: none !important; }
 
     .searchBtn {
       display: inline-flex !important;
@@ -156,14 +138,10 @@ const mobileMenuFix = `
       box-shadow: 0 30px 80px rgba(0,25,80,.18) !important;
     }
 
-    .siteHeader.mobile-open .mainNav {
-      display: block !important;
-    }
+    .siteHeader.mobile-open .mainNav { display: block !important; }
 
     .siteHeader.mobile-open .mainMenu,
-    .siteHeader.mobile-open .memberLink {
-      display: none !important;
-    }
+    .siteHeader.mobile-open .memberLink { display: none !important; }
 
     .siteHeader.mobile-open .mobileMenuTitle {
       display: block !important;
@@ -196,13 +174,10 @@ const mobileMenuFix = `
       line-height: 1.1 !important;
       font-weight: 950 !important;
       letter-spacing: -.02em !important;
-      text-transform: none !important;
       white-space: normal !important;
-      word-break: normal !important;
       box-shadow: none !important;
     }
 
-    .mobileFullMenu a:hover,
     .mobileFullMenu a.active {
       color: #00338d !important;
       border-color: #ffcc00 !important;
@@ -235,38 +210,19 @@ const mobileMenuFix = `
       padding: 12px !important;
     }
 
-    .mobileMenuActions .mobileParticipar {
-      background: #0a48bd !important;
-      color: white !important;
-    }
-
-    .mobileMenuActions .mobileApoiar {
-      background: #ffcc00 !important;
-      color: #111827 !important;
-    }
-
-    .topStripe {
-      display: none !important;
-    }
+    .mobileMenuActions .mobileParticipar { background: #0a48bd !important; color: #fff !important; }
+    .mobileMenuActions .mobileApoiar { background: #ffcc00 !important; color: #111827 !important; }
+    .topStripe { display: none !important; }
   }
 
   @media (max-width: 430px) {
-    .siteHeader.mobile-open .mobileFullMenu {
-      grid-template-columns: 1fr !important;
-    }
-
-    .siteHeader.mobile-open .mobileMenuActions {
-      grid-template-columns: 1fr !important;
-    }
-
-    .mobileFullMenu a {
-      min-height: 50px !important;
-      font-size: 1rem !important;
-    }
+    .siteHeader.mobile-open .mobileFullMenu,
+    .siteHeader.mobile-open .mobileMenuActions { grid-template-columns: 1fr !important; }
+    .mobileFullMenu a { min-height: 50px !important; font-size: 1rem !important; }
   }
 `;
 
-const mobileMenuScript = `
+const finalMobileMenuScript = `
 (function(){
   var links = [
     ['/', 'Início'],
@@ -337,16 +293,8 @@ const mobileMenuScript = `
   function init(){ ensureFullMenu(); }
 
   document.addEventListener('click', toggleMenu, true);
-
-  document.addEventListener('click', function(event){
-    if (!isMobile()) return;
-    if (event.target.closest('.mainNav a')) closeMenu();
-  }, true);
-
-  document.addEventListener('keydown', function(event){
-    if (event.key === 'Escape') closeMenu();
-  });
-
+  document.addEventListener('click', function(event){ if (isMobile() && event.target.closest('.mainNav a')) closeMenu(); }, true);
+  document.addEventListener('keydown', function(event){ if (event.key === 'Escape') closeMenu(); });
   window.addEventListener('resize', function(){ if (!isMobile()) closeMenu(); });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
@@ -361,9 +309,9 @@ export default function RootLayout(props) {
     React.createElement(
       'body',
       null,
-      React.createElement('style', { dangerouslySetInnerHTML: { __html: mobileMenuFix } }),
       props.children,
-      React.createElement('script', { dangerouslySetInnerHTML: { __html: mobileMenuScript } })
+      React.createElement('style', { id: 'final-mobile-menu-css', dangerouslySetInnerHTML: { __html: finalMobileMenuCss } }),
+      React.createElement('script', { dangerouslySetInnerHTML: { __html: finalMobileMenuScript } })
     )
   );
 }
