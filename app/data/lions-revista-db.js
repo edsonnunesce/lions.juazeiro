@@ -1,5 +1,5 @@
 const revistaDb = {
-  updatedAt: '2026-05-06',
+  updatedAt: '2026-05-08',
   project: 'Lions Clube Juazeiro do Norte - Revista Virtual',
   editorialPolicy: {
     purpose: 'Base inicial para revista virtual mensal do Lions Clube Juazeiro do Norte.',
@@ -14,6 +14,9 @@ const revistaDb = {
   sources: [
     { id: 'lci-impact-pt', scope: 'global', title: 'O nosso impacto global', url: 'https://www.lionsclubs.org/pt/our-impact/our-service/our-global-impact', autoRefresh: true },
     { id: 'lci-service-reporting-pt', scope: 'global', title: 'Relatorios de Servicos', url: 'https://www.lionsclubs.org/pt/member-resource-center/service/resources/service-journey/service-reporting', autoRefresh: true },
+    { id: 'lci-leaders', scope: 'global', title: 'Lideres de Lions International', url: 'https://www.lionsclubs.org/en/discover-our-clubs/our-leaders', autoRefresh: true },
+    { id: 'lci-presidential-theme', scope: 'global', title: 'Tema Presidencial 2025/2026', url: 'https://www.lionsclubs.org/pt/discover-our-clubs/presidential-theme', autoRefresh: true },
+    { id: 'lci-mission-1-5', scope: 'global', title: 'MISSION 1.5 / Abordagem Global do Quadro Associativo', url: 'https://www.lionsclubs.org/en/resources-for-members/resource-center/global-membership-approach', autoRefresh: true },
     { id: 'lcif-annual-report-pt', scope: 'lcif', title: 'Relatorio Anual LCIF 2024-2025', url: 'https://www.lionsclubs.org/pt/explore-our-foundation/annual-report', autoRefresh: true },
     { id: 'lcif-foundation-about-pt', scope: 'lcif', title: 'Conheca nossa Fundacao', url: 'https://www.lionsclubs.org/pt/about-us/our-foundation/about-our-foundation', autoRefresh: true },
     { id: 'lcif-history', scope: 'lcif', title: 'LCIF History', url: 'https://www.lionsclubs.org/en/discover-our-foundation/history', autoRefresh: true },
@@ -28,6 +31,23 @@ const revistaDb = {
   global: {
     impactPeriod: 'Julho de 2024 a junho de 2025',
     missionPillars: ['Melhorar a saude e o bem-estar', 'Fortalecer as comunidades', 'Apoiar os necessitados'],
+    membership: {
+      program: 'MISSION 1.5',
+      internationalPresident: 'A.P. Singh',
+      presidentialYear: '2025/2026',
+      officialGoal: 1500000,
+      goalDate: '2027-07-01',
+      message: 'Continuar crescendo',
+      receivedBulletin: {
+        title: 'Quadro associativo Lions International',
+        receivedAt: '2026-05-08',
+        sourceType: 'Peca institucional recebida em grupo/comunicacao leonistica',
+        verificationStatus: 'coerente com fontes oficiais; numeros pontuais em verificacao documental direta',
+        totalMembers: 1400947,
+        newClubsThisYear: 2546,
+        newMembersThisYear: 216332
+      }
+    },
     impact: {
       projectsCompleted: 1500000,
       peopleServed: 410000000,
