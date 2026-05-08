@@ -22,14 +22,19 @@ const script = `
     address:'Sede do Clube · Rua Lions Clube Nº 29, Bairro Leandro Bezerra, Juazeiro do Norte - CE',
     cycle:'AL 2026/2027'
   };
+  const key='lj_directors';
+  const seededKey='lj_directors_seeded_2026_2027';
   function esc(v){return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-  function replaceDirectors(){
+  function getDirectors(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}}
+  function renderDirectorsFromStorage(){
     const grid=document.getElementById('directorGrid');
     if(!grid)return;
-    grid.innerHTML=officialDirectors.map(d=>'<article><div class="avatar">'+esc(d[0][0])+'</div><h2>'+esc(d[0])+'</h2><p><b>'+esc(d[1])+'</b></p><p>'+esc(d[2])+'</p></article>').join('');
+    const current=getDirectors();
+    if(!current.length)return;
+    grid.innerHTML=current.map(d=>'<article><div class="avatar">'+esc((d[0]||'L')[0])+'</div><h2>'+esc(d[0])+'</h2><p><b>'+esc(d[1])+'</b></p><p>'+esc(d[2])+'</p></article>').join('');
     const notice=document.createElement('section');
     notice.className='notice officialNotice';
-    notice.innerHTML='<b>Dados oficiais atualizados:</b> nominata pública do Lions Clubs International para '+officialClub.cycle+'. Contatos pessoais e endereços residenciais não foram publicados na área pública.';
+    notice.innerHTML='<b>Diretoria:</b> dados editáveis no painel administrativo. A nominata oficial '+officialClub.cycle+' foi usada apenas como carga inicial. Contatos pessoais e endereços residenciais não são publicados na área pública.';
     if(!document.querySelector('.officialNotice')) grid.after(notice);
   }
   function updateHistoryAndTransparency(){
@@ -41,15 +46,16 @@ const script = `
       }
     });
   }
-  function seedAdminLocal(){
+  function seedAdminLocalOnce(){
     try{
-      const key='lj_directors';
-      const current=JSON.parse(localStorage.getItem(key)||'[]');
-      const hasOfficial=current.some(x=>String(x[2]||'').includes('2026/2027'));
-      if(!hasOfficial)localStorage.setItem(key,JSON.stringify(officialDirectors));
+      const current=getDirectors();
+      if(!localStorage.getItem(seededKey) && !current.length){
+        localStorage.setItem(key,JSON.stringify(officialDirectors));
+        localStorage.setItem(seededKey,'1');
+      }
     }catch(e){}
   }
-  function boot(){seedAdminLocal();replaceDirectors();updateHistoryAndTransparency();}
+  function boot(){seedAdminLocalOnce();renderDirectorsFromStorage();updateHistoryAndTransparency();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
   setTimeout(boot,500);setTimeout(boot,1500);
 })();
