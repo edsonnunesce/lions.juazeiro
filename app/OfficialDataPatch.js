@@ -26,19 +26,22 @@ const script = `
   const seededKey='lj_directors_seeded_2026_2027';
   function esc(v){return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
   function getDirectors(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}}
+  function removePublicExplanations(){
+    document.querySelectorAll('.officialNotice').forEach(el=>el.remove());
+    document.querySelectorAll('.notice,.muted').forEach(el=>{
+      const t=(el.textContent||'').toLowerCase();
+      if(t.includes('dados editáveis')||t.includes('nominata oficial')||t.includes('contatos pessoais')||t.includes('endereços residenciais')||t.includes('nomes pessoais não foram publicados')||t.includes('sem backend')||t.includes('modo local')||t.includes('conectar autenticação')||t.includes('nenhum relatório financeiro')) el.remove();
+    });
+  }
   function renderDirectorsFromStorage(){
     const grid=document.getElementById('directorGrid');
     if(!grid)return;
     const current=getDirectors();
     if(!current.length)return;
     grid.innerHTML=current.map(d=>'<article><div class="avatar">'+esc((d[0]||'L')[0])+'</div><h2>'+esc(d[0])+'</h2><p><b>'+esc(d[1])+'</b></p><p>'+esc(d[2])+'</p></article>').join('');
-    const notice=document.createElement('section');
-    notice.className='notice officialNotice';
-    notice.innerHTML='<b>Diretoria:</b> dados editáveis no painel administrativo. A nominata oficial '+officialClub.cycle+' foi usada apenas como carga inicial. Contatos pessoais e endereços residenciais não são publicados na área pública.';
-    if(!document.querySelector('.officialNotice')) grid.after(notice);
   }
   function updateHistoryAndTransparency(){
-    document.querySelectorAll('.timeline p').forEach(p=>{if(p.textContent.includes('1976'))p.innerHTML='<b>1956</b><span>O documento oficial de Dirigentes de Lions Clube 2026/2027 informa a fundação do Lions Clube Juazeiro do Norte em '+officialClub.founded+'.</span>'});
+    document.querySelectorAll('.timeline p').forEach(p=>{if(p.textContent.includes('1976'))p.innerHTML='<b>1956</b><span>Fundação do Lions Clube Juazeiro do Norte em '+officialClub.founded+'.</span>'});
     document.querySelectorAll('.stats div').forEach(div=>{if(div.textContent.includes('1976'))div.innerHTML='<b>1956</b><span>fundado em '+officialClub.founded+'</span>';if(div.textContent.includes('17173'))div.innerHTML='<b>17173</b><span>número internacional do clube</span>'});
     document.querySelectorAll('.content article').forEach(article=>{
       if(article.textContent.includes('Dados públicos locais')){
@@ -55,9 +58,9 @@ const script = `
       }
     }catch(e){}
   }
-  function boot(){seedAdminLocalOnce();renderDirectorsFromStorage();updateHistoryAndTransparency();}
+  function boot(){seedAdminLocalOnce();renderDirectorsFromStorage();updateHistoryAndTransparency();removePublicExplanations();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  setTimeout(boot,500);setTimeout(boot,1500);
+  setTimeout(boot,500);setTimeout(boot,1500);setTimeout(boot,2500);
 })();
 `;
 
