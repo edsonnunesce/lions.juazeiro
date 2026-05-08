@@ -16,7 +16,7 @@ export default function LcifPage(){
     React.createElement('style',{dangerouslySetInnerHTML:{__html:css}}),
     React.createElement('main',{className:'lcif'},
       React.createElement('section',{className:'heroLcif'},
-        React.createElement('small',null,'Cantinho LCIF'),
+        React.createElement('small',null,'LCIF'),
         React.createElement('h1',null,'A Fundação que amplia o servir.'),
         React.createElement('p',null,l.mission),
         React.createElement('a',{className:'btn',href:'/revista/al-2025-2026-001'},'Ver LCIF na revista')
