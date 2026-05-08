@@ -36,14 +36,14 @@ export default function HomeIntelligence(){
           React.createElement('div',{className:'intelActions'},React.createElement('a',{className:'intelBtn',href:'/revista'},'Abrir revista mensal'),React.createElement('a',{className:'intelBtn blue',href:'/campanhas'},'Campanhas locais'))
         ),
         React.createElement('article',{className:'intelCard'},
-          React.createElement('h3',null,'Cantinho LCIF'),
+          React.createElement('h3',null,'LCIF'),
           React.createElement('p',null,'A fundação global amplia o serviço dos clubes por meio de subsídios, programas, socorro em catástrofes, visão, juventude e apoio humanitário.'),
           React.createElement('div',{className:'metrics'},
             React.createElement('div',{className:'metric'},React.createElement('b',null,money.format(lcif.annualReport2024_2025.grantsTotalUSD)),React.createElement('span',null,'subsídios 2024/2025')),
             React.createElement('div',{className:'metric'},React.createElement('b',null,fmt.format(lcif.annualReport2024_2025.grantsAwarded)),React.createElement('span',null,'subsídios concedidos')),
             React.createElement('div',{className:'metric'},React.createElement('b',null,fmt.format(lcif.cataractSurgeries)),React.createElement('span',null,'cirurgias de catarata'))
           ),
-          React.createElement('div',{className:'intelActions'},React.createElement('a',{className:'intelBtn',href:'/lcif'},'Abrir cantinho LCIF'),React.createElement('a',{className:'intelBtn blue',href:'/revista/al-2025-2026-001'},'Ver na revista'))
+          React.createElement('div',{className:'intelActions'},React.createElement('a',{className:'intelBtn',href:'/lcif'},'Abrir LCIF'),React.createElement('a',{className:'intelBtn blue',href:'/revista/al-2025-2026-001'},'Ver na revista'))
         )
       ),
       React.createElement('article',{className:'intelCard gold'},
