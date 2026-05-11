@@ -1,5 +1,5 @@
 const revistaDb = {
-  updatedAt: '2026-05-08',
+  updatedAt: '2026-05-11',
   project: 'Lions Clube Juazeiro do Norte - Revista Virtual',
   editorialPolicy: {
     purpose: 'Base inicial para revista virtual mensal do Lions Clube Juazeiro do Norte.',
@@ -14,9 +14,11 @@ const revistaDb = {
   sources: [
     { id: 'lci-impact-pt', scope: 'global', title: 'O nosso impacto global', url: 'https://www.lionsclubs.org/pt/our-impact/our-service/our-global-impact', autoRefresh: true },
     { id: 'lci-service-reporting-pt', scope: 'global', title: 'Relatorios de Servicos', url: 'https://www.lionsclubs.org/pt/member-resource-center/service/resources/service-journey/service-reporting', autoRefresh: true },
+    { id: 'lci-exchange-rates-pt', scope: 'global', title: 'Taxas de cambio leonistico', url: 'https://www.lionsclubs.org/pt/resources-for-members/resource-center/exchange-rates', autoRefresh: true },
     { id: 'lci-leaders', scope: 'global', title: 'Lideres de Lions International', url: 'https://www.lionsclubs.org/en/discover-our-clubs/our-leaders', autoRefresh: true },
     { id: 'lci-presidential-theme', scope: 'global', title: 'Tema Presidencial 2025/2026', url: 'https://www.lionsclubs.org/pt/discover-our-clubs/presidential-theme', autoRefresh: true },
     { id: 'lci-mission-1-5', scope: 'global', title: 'MISSION 1.5 / Abordagem Global do Quadro Associativo', url: 'https://www.lionsclubs.org/en/resources-for-members/resource-center/global-membership-approach', autoRefresh: true },
+    { id: 'lcif-member-resource-pt', scope: 'lcif', title: 'LCIF - Central de Recursos para Associados', url: 'https://www.lionsclubs.org/pt/member-resource-center/lcif', autoRefresh: true },
     { id: 'lcif-annual-report-pt', scope: 'lcif', title: 'Relatorio Anual LCIF 2024-2025', url: 'https://www.lionsclubs.org/pt/explore-our-foundation/annual-report', autoRefresh: true },
     { id: 'lcif-foundation-about-pt', scope: 'lcif', title: 'Conheca nossa Fundacao', url: 'https://www.lionsclubs.org/pt/about-us/our-foundation/about-our-foundation', autoRefresh: true },
     { id: 'lcif-history', scope: 'lcif', title: 'LCIF History', url: 'https://www.lionsclubs.org/en/discover-our-foundation/history', autoRefresh: true },
@@ -31,6 +33,10 @@ const revistaDb = {
   global: {
     impactPeriod: 'Julho de 2024 a junho de 2025',
     missionPillars: ['Melhorar a saude e o bem-estar', 'Fortalecer as comunidades', 'Apoiar os necessitados'],
+    usefulLinks: [
+      { title: 'Taxas de cambio leonistico', description: 'Referencia oficial de cambio utilizada por Lions International.', url: 'https://www.lionsclubs.org/pt/resources-for-members/resource-center/exchange-rates' },
+      { title: 'LCIF - consultas e recursos', description: 'Central oficial LCIF para associados, clubes e liderancas.', url: 'https://www.lionsclubs.org/pt/member-resource-center/lcif' }
+    ],
     membership: {
       program: 'MISSION 1.5',
       internationalPresident: 'A.P. Singh',
@@ -60,14 +66,15 @@ const revistaDb = {
       cataractSurgeries: 9800000
     },
     causes: [
-      { name: 'Cancer Infantil', peopleServed: 8000000 },
+      { name: 'Câncer infantil', peopleServed: 8000000 },
       { name: 'Diabetes', peopleServed: 14000000 },
-      { name: 'Socorro apos catastrofes', peopleServed: 6000000 },
+      { name: 'Socorro após catástrofes', peopleServed: 6000000 },
       { name: 'Meio ambiente', peopleServed: 63000000 },
-      { name: 'Esforcos Humanitarios', peopleServed: 113000000 },
+      { name: 'Esforços humanitários', peopleServed: 113000000 },
       { name: 'Fome', peopleServed: 58000000 },
-      { name: 'Visao', peopleServed: 22000000 },
-      { name: 'Juventude', peopleServed: 21000000 }
+      { name: 'Visão', peopleServed: 22000000 },
+      { name: 'Juventude', peopleServed: 21000000 },
+      { name: 'Saúde mental e Bem-estar', peopleServed: null }
     ]
   },
   lcif: {
@@ -99,33 +106,10 @@ const revistaDb = {
     },
     magazineSections: ['LCIF em numeros', 'Causa global do mes', 'Historias de servico', 'Subsidios e oportunidades', 'Como isso inspira Juazeiro do Norte']
   },
-  brazil: {
-    multipleDistricts: [
-      { code: 'LA', region: 'Norte/Nordeste' },
-      { code: 'LB', region: 'Centro/Oeste' },
-      { code: 'LC', region: 'Leste/Sudeste' },
-      { code: 'LD', region: 'Sul' }
-    ]
-  },
-  dmla: {
-    name: 'Distrito Multiplo LA',
-    region: 'Norte e Nordeste do Brasil',
-    districts: ['LA-1 AM/AC/RO/RR', 'LA-2 BA', 'LA-3 PE/SE/AL', 'LA-4 CE', 'LA-5 PB/RN', 'LA-6 PA/AP/MA/PI']
-  },
-  dla4: {
-    name: 'Distrito LA-4',
-    state: 'Ceara',
-    cycle: 'AL 2025/2026',
-    mottoFromLogo: 'Com Deus e trabalho servimos com amor',
-    editorialUse: 'Secao fixa com governadoria, divisoes, campanhas distritais, calendario, visitas oficiais e acoes integradas no Ceara.'
-  },
-  localClub: {
-    name: 'Lions Clube de Juazeiro do Norte',
-    district: 'LA-4',
-    division: 'Divisao 12',
-    region: 'Cariri - Ceara',
-    editorialUse: 'Secao fixa mensal com atividades locais, fotos, relatorios, voluntarios, parceiros, metas, impactos e agenda.'
-  },
+  brazil: { multipleDistricts: [{ code: 'LA', region: 'Norte/Nordeste' },{ code: 'LB', region: 'Centro/Oeste' },{ code: 'LC', region: 'Leste/Sudeste' },{ code: 'LD', region: 'Sul' }] },
+  dmla: { name: 'Distrito Multiplo LA', region: 'Norte e Nordeste do Brasil', districts: ['LA-1 AM/AC/RO/RR', 'LA-2 BA', 'LA-3 PE/SE/AL', 'LA-4 CE', 'LA-5 PB/RN', 'LA-6 PA/AP/MA/PI'] },
+  dla4: { name: 'Distrito LA-4', state: 'Ceara', cycle: 'AL 2025/2026', mottoFromLogo: 'Com Deus e trabalho servimos com amor', editorialUse: 'Secao fixa com governadoria, divisoes, campanhas distritais, calendario, visitas oficiais e acoes integradas no Ceara.' },
+  localClub: { name: 'Lions Clube de Juazeiro do Norte', district: 'LA-4', division: 'Divisao 12', region: 'Cariri - Ceara', editorialUse: 'Secao fixa mensal com atividades locais, fotos, relatorios, voluntarios, parceiros, metas, impactos e agenda.' },
   monthlyAutomation: {
     mode: 'hibrido',
     automaticSources: ['Lions International', 'LCIF', 'LION Magazine', 'Lions Brasil', 'DMLA', 'Distrito LA-4'],
@@ -135,16 +119,7 @@ const revistaDb = {
   monthlyMagazine: {
     currentIssueId: 'al-2025-2026-001',
     series: 'Revista Mensal AL 2025/2026',
-    issues: [
-      {
-        id: 'al-2025-2026-001',
-        number: 1,
-        title: 'Revista Mensal AL 2025/2026 numero 1',
-        month: 'Maio de 2026',
-        status: 'modelo inicial',
-        coverLine: 'Nos servimos Juazeiro, o Cariri e o mundo'
-      }
-    ]
+    issues: [{ id: 'al-2025-2026-001', number: 1, title: 'Revista Mensal AL 2025/2026 numero 1', month: 'Maio de 2026', status: 'modelo inicial', coverLine: 'Nos servimos Juazeiro, o Cariri e o mundo' }]
   }
 };
 
