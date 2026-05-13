@@ -5,15 +5,28 @@ const script = `
   const fmtDate=(value)=>{try{const d=new Date(String(value)+'T12:00:00');return d.toLocaleDateString('pt-BR');}catch(e){return value||''}};
   const esc=(v)=>String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;');
   function monthRangeForIssue(){
-    const start=new Date('2026-05-01T12:00:00');
-    const end=new Date('2026-05-31T12:00:00');
+    const start=new Date('2026-05-01T00:00:00');
+    const end=new Date('2026-05-31T23:59:59');
     return {start,end,label:'maio de 2026',issueLabel:'Junho de 2026'};
   }
+  function asDate(value){
+    if(!value)return null;
+    const d=new Date(String(value).includes('T')?String(value):String(value)+'T12:00:00');
+    return isNaN(d.getTime())?null:d;
+  }
   function inRange(c,start,end){
-    const raw=c.data_inicio||c.date||c[2];
-    if(!raw)return false;
-    const d=new Date(String(raw)+'T12:00:00');
-    return d>=start && d<=end;
+    const main=asDate(c.data_inicio||c.date||c[2]);
+    if(main && main>=start && main<=end)return true;
+    const created=asDate(c.criado_em||c.created_at);
+    if(created && created>=start && created<=end)return true;
+    return false;
+  }
+  function displayDate(c){
+    const main=asDate(c.data_inicio||c[2]);
+    const created=asDate(c.criado_em||c.created_at);
+    if(main && main.getFullYear()===2026 && main.getMonth()===4)return fmtDate(c.data_inicio||c[2]);
+    if(created && created.getFullYear()===2026 && created.getMonth()===4)return created.toLocaleDateString('pt-BR');
+    return fmtDate(c.data_inicio||c[2]||c.criado_em||'');
   }
   function photos(c){
     const f=c.fotos||c[5]||[];
@@ -26,7 +39,7 @@ const script = `
       (ph[0]?'<img class="localCampaignPhoto" src="'+esc(ph[0])+'" alt="'+esc(c.titulo||c[0]||'Campanha local')+'">':'')+
       '<h3>'+esc(c.titulo||c[0]||'Campanha local')+'</h3>'+
       '<p><b>'+esc(c.causa_global||c[1]||'Campanha local')+'</b></p>'+
-      '<p>'+esc(fmtDate(c.data_inicio||c[2]))+' · '+esc(c.local||c[3]||'Juazeiro do Norte')+'</p>'+
+      '<p>'+esc(displayDate(c))+' · '+esc(c.local||c[3]||'Juazeiro do Norte')+'</p>'+
       '<p>'+esc(c.resumo||c[4]||'')+'</p>'+
       '</div>';
   }
@@ -51,7 +64,7 @@ const script = `
     ensureStyles();
     patchIssueLabels();
     const pages=Array.from(document.querySelectorAll('.magPage'));
-    const page=pages.find(p=>(p.textContent||'').includes('Campanhas locais validadas') || (p.textContent||'').includes('Campanhas locais do mês'));
+    const page=pages.find(p=>(p.textContent||'').includes('Campanhas locais validadas') || (p.textContent||'').includes('Campanhas locais do mês') || (p.textContent||'').includes('Campanhas locais de maio'));
     if(!page)return;
     const range=monthRangeForIssue();
     const all=await loadCampaigns();
@@ -60,7 +73,7 @@ const script = `
     const kicker=page.querySelector('.kicker'); if(kicker)kicker.textContent='Revista de junho de 2026';
     const footer=page.querySelector('.pageFooter');
     const html=selected.length
-      ? '<p>Esta edição de '+esc(range.issueLabel)+' reúne automaticamente as campanhas locais realizadas de 01/05/2026 a 31/05/2026.</p><div class="localCampaignGrid">'+selected.map(card).join('')+'</div>'
+      ? '<p>Esta edição de '+esc(range.issueLabel)+' reúne automaticamente as campanhas locais realizadas ou cadastradas de 01/05/2026 a 31/05/2026.</p><div class="localCampaignGrid">'+selected.map(card).join('')+'</div>'
       : '<p>Esta edição de '+esc(range.issueLabel)+' será alimentada automaticamente pelas campanhas cadastradas no período de 01/05/2026 a 31/05/2026.</p><div class="photoBox">Aguardando campanhas locais de maio cadastradas no banco.</div>';
     Array.from(page.children).forEach(el=>{if(!el.classList.contains('kicker') && el.tagName!=='H2' && !el.classList.contains('pageFooter'))el.remove();});
     const wrap=document.createElement('div');wrap.innerHTML=html;while(wrap.firstChild)page.insertBefore(wrap.firstChild,footer||null);
