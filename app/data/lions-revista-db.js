@@ -1,5 +1,5 @@
 const revistaDb = {
-  updatedAt: '2026-05-11',
+  updatedAt: '2026-05-12',
   project: 'Lions Clube Juazeiro do Norte - Revista Virtual',
   editorialPolicy: {
     purpose: 'Base inicial para revista virtual mensal do Lions Clube Juazeiro do Norte.',
@@ -8,7 +8,8 @@ const revistaDb = {
       'Toda edicao deve conter fontes e data de coleta.',
       'A revista deve ser exibida na pagina e exportavel em PDF via impressao do navegador.',
       'Fontes internacionais, LCIF, LION Magazine, Distrito Multiplo e LA-4 devem retroalimentar a revista mensalmente.',
-      'Campanhas e atividades locais do Lions Juazeiro devem ser atualizadas manualmente pela diretoria autorizada.'
+      'Campanhas e atividades locais do Lions Juazeiro devem ser atualizadas manualmente pela diretoria autorizada.',
+      'A revista mensal publicada em um mes deve conter automaticamente as campanhas locais realizadas do dia 1 ao ultimo dia do mes anterior.'
     ]
   },
   sources: [
@@ -119,7 +120,17 @@ const revistaDb = {
   monthlyMagazine: {
     currentIssueId: 'al-2025-2026-001',
     series: 'Revista Mensal AL 2025/2026',
-    issues: [{ id: 'al-2025-2026-001', number: 1, title: 'Revista Mensal AL 2025/2026 numero 1', month: 'Maio de 2026', status: 'modelo inicial', coverLine: 'Nos servimos Juazeiro, o Cariri e o mundo' }]
+    issues: [{
+      id: 'al-2025-2026-001',
+      number: 1,
+      title: 'Revista Mensal AL 2025/2026 número 1',
+      month: 'Junho de 2026',
+      publicationMonth: '2026-06',
+      campaignsFrom: '2026-05-01',
+      campaignsTo: '2026-05-31',
+      status: 'edição inicial',
+      coverLine: 'Nós servimos Juazeiro, o Cariri e o mundo'
+    }]
   }
 };
 
