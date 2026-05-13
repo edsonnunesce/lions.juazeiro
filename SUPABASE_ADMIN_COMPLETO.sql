@@ -38,13 +38,28 @@ create table if not exists public.usuarios_admin (
   criado_em timestamptz not null default now()
 );
 
+create table if not exists public.revista_imagens (
+  id uuid primary key default gen_random_uuid(),
+  edicao_id text not null default 'al-2025-2026-001',
+  secao text not null,
+  titulo text,
+  imagem_url text not null,
+  legenda text,
+  credito text,
+  ordem integer not null default 100,
+  ativo boolean not null default true,
+  criado_em timestamptz not null default now()
+);
+
 create index if not exists idx_campanhas_data on public.campanhas(data_inicio desc);
 create index if not exists idx_diretoria_ordem on public.diretoria(ordem asc);
 create index if not exists idx_usuarios_email on public.usuarios_admin(email);
+create index if not exists idx_revista_imagens_secao on public.revista_imagens(edicao_id, secao, ordem asc);
 
 alter table public.campanhas enable row level security;
 alter table public.diretoria enable row level security;
 alter table public.usuarios_admin enable row level security;
+alter table public.revista_imagens enable row level security;
 
 drop policy if exists campanhas_publicas_select on public.campanhas;
 create policy campanhas_publicas_select on public.campanhas
@@ -52,6 +67,10 @@ for select using (status = 'publicada');
 
 drop policy if exists diretoria_publica_select on public.diretoria;
 create policy diretoria_publica_select on public.diretoria
+for select using (ativo = true);
+
+drop policy if exists revista_imagens_publicas_select on public.revista_imagens;
+create policy revista_imagens_publicas_select on public.revista_imagens
 for select using (ativo = true);
 
 -- usuarios_admin não tem política pública. O acesso é feito apenas via service role no backend.
