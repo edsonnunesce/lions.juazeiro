@@ -5,12 +5,9 @@ const script = `
   const fmtDate=(value)=>{try{const d=new Date(String(value)+'T12:00:00');return d.toLocaleDateString('pt-BR');}catch(e){return value||''}};
   const esc=(v)=>String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;');
   function monthRangeForIssue(){
-    const now=new Date();
-    const issueMonth=now.getMonth();
-    const issueYear=now.getFullYear();
-    const start=new Date(issueYear, issueMonth-1, 1);
-    const end=new Date(issueYear, issueMonth, 0);
-    return {start,end,label:start.toLocaleDateString('pt-BR',{month:'long',year:'numeric'})};
+    const start=new Date('2026-05-01T12:00:00');
+    const end=new Date('2026-05-31T12:00:00');
+    return {start,end,label:'maio de 2026',issueLabel:'Junho de 2026'};
   }
   function inRange(c,start,end){
     const raw=c.data_inicio||c.date||c[2];
@@ -43,21 +40,28 @@ const script = `
     try{const r=await fetch('/api/campanhas',{cache:'no-store'});const j=await r.json();if(j&&j.ok&&Array.isArray(j.data))return j.data;}catch(e){}
     try{return JSON.parse(localStorage.getItem('lj_campaigns')||'[]').map(x=>({titulo:x[0],causa_global:x[1],data_inicio:x[2],local:x[3],resumo:x[4],fotos:String(x[5]||'').split(',').map(v=>v.trim()).filter(Boolean)}));}catch(e){return []}
   }
+  function patchIssueLabels(){
+    if(!location.pathname.startsWith('/revista'))return;
+    document.querySelectorAll('.thumbCover span,.coverStrip b,.issueHeader h2,.thumbMeta strong').forEach(el=>{
+      el.textContent=el.textContent.replace('Maio de 2026','Junho de 2026').replace('Revista Mensal AL 2025/2026 numero 1','Revista Mensal AL 2025/2026 número 1');
+    });
+  }
   async function patchRevista(){
     if(!location.pathname.startsWith('/revista'))return;
     ensureStyles();
+    patchIssueLabels();
     const pages=Array.from(document.querySelectorAll('.magPage'));
-    const page=pages.find(p=>(p.textContent||'').includes('Campanhas locais validadas'));
+    const page=pages.find(p=>(p.textContent||'').includes('Campanhas locais validadas') || (p.textContent||'').includes('Campanhas locais do mês'));
     if(!page)return;
     const range=monthRangeForIssue();
     const all=await loadCampaigns();
     const selected=all.filter(c=>inRange(c,range.start,range.end));
-    const title=page.querySelector('h2'); if(title)title.textContent='Campanhas locais do mês';
-    const kicker=page.querySelector('.kicker'); if(kicker)kicker.textContent='Lions Juazeiro';
+    const title=page.querySelector('h2'); if(title)title.textContent='Campanhas locais de maio';
+    const kicker=page.querySelector('.kicker'); if(kicker)kicker.textContent='Revista de junho de 2026';
     const footer=page.querySelector('.pageFooter');
     const html=selected.length
-      ? '<p>Campanhas realizadas em '+esc(range.label)+' para publicação na revista do mês subsequente.</p><div class="localCampaignGrid">'+selected.map(card).join('')+'</div>'
-      : '<p>As campanhas cadastradas no período de '+esc(range.label)+' aparecerão nesta página da revista do mês subsequente.</p><div class="photoBox">Aguardando campanhas locais cadastradas no banco.</div>';
+      ? '<p>Esta edição de '+esc(range.issueLabel)+' reúne automaticamente as campanhas locais realizadas de 01/05/2026 a 31/05/2026.</p><div class="localCampaignGrid">'+selected.map(card).join('')+'</div>'
+      : '<p>Esta edição de '+esc(range.issueLabel)+' será alimentada automaticamente pelas campanhas cadastradas no período de 01/05/2026 a 31/05/2026.</p><div class="photoBox">Aguardando campanhas locais de maio cadastradas no banco.</div>';
     Array.from(page.children).forEach(el=>{if(!el.classList.contains('kicker') && el.tagName!=='H2' && !el.classList.contains('pageFooter'))el.remove();});
     const wrap=document.createElement('div');wrap.innerHTML=html;while(wrap.firstChild)page.insertBefore(wrap.firstChild,footer||null);
   }
