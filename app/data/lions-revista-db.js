@@ -118,19 +118,43 @@ const revistaDb = {
     monthlyCycle: ['coletar fontes oficiais', 'classificar por escopo', 'alimentar blocos do site', 'montar revista mensal', 'validar conteudo local', 'exportar PDF']
   },
   monthlyMagazine: {
-    currentIssueId: 'al-2025-2026-001',
+    currentIssueId: 'al-2025-2026-002',
     series: 'Revista Mensal AL 2025/2026',
-    issues: [{
-      id: 'al-2025-2026-001',
-      number: 1,
-      title: 'Revista Mensal AL 2025/2026 número 1',
-      month: 'Junho de 2026',
-      publicationMonth: '2026-06',
-      campaignsFrom: '2026-05-01',
-      campaignsTo: '2026-05-31',
-      status: 'edição inicial',
-      coverLine: 'Nós servimos Juazeiro, o Cariri e o mundo'
-    }]
+    issues: [
+      {
+        id: 'al-2025-2026-001',
+        number: 1,
+        title: 'Revista Mensal AL 2025/2026 número 1',
+        month: 'Junho de 2026',
+        publicationMonth: '2026-06',
+        campaignsFrom: '2026-05-01',
+        campaignsTo: '2026-05-31',
+        status: 'publicada',
+        coverLine: 'Nós servimos Juazeiro, o Cariri e o mundo'
+      },
+      {
+        id: 'al-2025-2026-002',
+        number: 2,
+        title: 'Revista Mensal AL 2025/2026 número 2',
+        month: 'Julho de 2026',
+        publicationMonth: '2026-07',
+        campaignsFrom: '2026-06-01',
+        campaignsTo: '2026-06-30',
+        status: 'publicada',
+        coverLine: 'Julho registra as ações de junho e o fechamento do AL 2025/2026'
+      },
+      {
+        id: 'al-2025-2026-003',
+        number: 3,
+        title: 'Revista Mensal AL 2025/2026 número 3',
+        month: 'Agosto de 2026',
+        publicationMonth: '2026-08',
+        campaignsFrom: '2026-07-01',
+        campaignsTo: '2026-07-31',
+        status: 'em breve',
+        coverLine: 'Em breve'
+      }
+    ]
   }
 };
 
