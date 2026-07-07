@@ -9,7 +9,11 @@ const script = `
     'al-2025-2026-002':{number:2,month:'Julho de 2026',label:'junho de 2026',title:'Campanhas locais de junho',from:'2026-06-01',to:'2026-06-30'},
     'al-2025-2026-003':{number:3,month:'Agosto de 2026',label:'julho de 2026',title:'Em breve',from:'2026-07-01',to:'2026-07-31',soon:true}
   };
-  function currentIssue(){const m=location.pathname.match(/\/revista\/(al-2025-2026-00[123])/);return issueMap[m?m[1]:'al-2025-2026-002']||issueMap['al-2025-2026-002'];}
+  function currentIssue(){
+    const parts=location.pathname.split('/').filter(Boolean);
+    const id=parts.find(part=>issueMap[part]);
+    return issueMap[id||'al-2025-2026-002']||issueMap['al-2025-2026-002'];
+  }
   function monthRangeForIssue(){const i=currentIssue();return {start:new Date(i.from+'T00:00:00'),end:new Date(i.to+'T23:59:59'),label:i.label,issueLabel:i.month,issue:i};}
   function asDate(value){if(!value)return null;const d=new Date(String(value).includes('T')?String(value):String(value)+'T12:00:00');return isNaN(d.getTime())?null:d;}
   function inRange(c,start,end){const main=asDate(c.data_inicio||c.date||c[2]);if(main&&main>=start&&main<=end)return true;const created=asDate(c.criado_em||c.created_at);if(created&&created>=start&&created<=end)return true;return false;}
