@@ -50,7 +50,7 @@ export default function HinoPage(){
     <header className="top">
       <div className="topInner">
         <a className="brand" href="/">
-          <img src="/logo_lcjuazeiro.png" alt="Lions Clube Juazeiro do Norte" />
+          <img src="/logo.png" alt="Lions Clube Juazeiro do Norte" />
           <span>Lions Clube Juazeiro do Norte<small>Nós Servimos — Cariri — Ceará</small></span>
         </a>
         <nav className="actions" aria-label="Navegação da página">
@@ -67,7 +67,7 @@ export default function HinoPage(){
           <h1>Ser Leão</h1>
           <p>Hino Oficial dos Lions Clubes do Brasil, preservado como parte da memória, da cultura e do espírito de serviço do movimento leonístico.</p>
         </div>
-        <div className="seal"><img src="/logo_lcjuazeiro.png" alt="Emblema do Lions Clube Juazeiro do Norte" /></div>
+        <div className="seal"><img src="/logo.png" alt="Emblema do Lions Clube Juazeiro do Norte" /></div>
       </div>
     </section>
 
