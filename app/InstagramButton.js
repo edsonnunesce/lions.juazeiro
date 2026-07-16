@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { usePathname } from 'next/navigation';
 
 function InstagramIcon() {
@@ -41,26 +41,6 @@ function InstagramIcon() {
 export default function InstagramButton() {
   const pathname = usePathname();
   const isHome = pathname === '/' || pathname === '';
-
-  useEffect(() => {
-    document.querySelectorAll('img').forEach((img) => {
-      const src = String(img.getAttribute('src') || '').toLowerCase();
-      const alt = String(img.getAttribute('alt') || '').toLowerCase();
-      const className = String(img.className || '').toLowerCase();
-      const isClubLogo =
-        alt.includes('lions clube juazeiro') ||
-        alt.includes('lions clube de juazeiro') ||
-        alt.includes('emblema do lions clube juazeiro') ||
-        src.includes('logo_lcjuazeiro') ||
-        src.includes('logo-lcjuazeiro') ||
-        src.includes('logo_lions_juazeiro') ||
-        className.includes('clublogo');
-
-      if (isClubLogo && src !== '/logo.png') {
-        img.setAttribute('src', '/logo.png');
-      }
-    });
-  }, [pathname]);
 
   if (!isHome) return null;
 
