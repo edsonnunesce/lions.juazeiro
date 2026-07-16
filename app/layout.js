@@ -20,7 +20,7 @@ export const metadata = {
 };
 
 const layoutCss = `
-  .mark {background-image:url('/logo_lcjuazeiro.png')!important;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important;background-color:transparent!important;border:0!important;box-shadow:none!important;border-radius:50%!important}
+  .mark {background-image:url('/logo.png')!important;background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important;background-color:transparent!important;border:0!important;box-shadow:none!important;border-radius:50%!important}
   .mark span{display:none!important}
   @media(min-width:961px){.mark{width:92px!important;height:92px!important;min-width:92px!important}}
   @media(max-width:960px){.mark{width:70px!important;height:70px!important;min-width:70px!important}}
