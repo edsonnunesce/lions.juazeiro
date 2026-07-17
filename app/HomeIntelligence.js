@@ -31,6 +31,6 @@ export default function HomeIntelligence(){
     React.createElement('article',{className:'intelCard'},React.createElement('h3',null,'Atualizações oficiais do Lions'),React.createElement('p',null,'Destaques internacionais incorporados ao portal para orientar comunicação, planejamento e serviço.'),React.createElement('div',{className:'officialUpdates'},updates.map(item=>React.createElement('div',{className:'officialUpdate',key:item.title},React.createElement('small',null,item.date),React.createElement('h4',null,item.title),React.createElement('p',null,item.text),React.createElement('a',{href:item.url,target:'_blank',rel:'noreferrer'},'Consultar fonte oficial ↗'))))),
     React.createElement('article',{className:'intelCard'},React.createElement('h3',null,'Causas globais que orientam nossas campanhas'),React.createElement('div',{className:'causeRow'},causes.map(c=>React.createElement('div',{className:'causePill',key:c.name},c.name,React.createElement('span',null,c.peopleServed?fmt.format(c.peopleServed)+' pessoas servidas':'causa global Lions'))))),
     React.createElement('article',{className:'intelCard'},React.createElement('h3',null,'Links úteis para Lions e LCIF'),React.createElement('p',null,'Referências oficiais para consultas e recursos.'),React.createElement('div',{className:'usefulLinks'},usefulLinks.map(item=>React.createElement('a',{className:'usefulLink',href:item.url,target:'_blank',rel:'noreferrer',key:item.url},React.createElement('strong',null,item.title),React.createElement('span',null,item.description)))))
-  )
- );
+   )
+  ));
 }
